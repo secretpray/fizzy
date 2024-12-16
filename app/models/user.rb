@@ -21,6 +21,8 @@ class User < ApplicationRecord
   validates_presence_of :email_address
   normalizes :email_address, with: ->(value) { value.strip.downcase }
 
+  after_create_commit :grant_access_to_buckets
+
   scope :active, -> { where(active: true) }
   scope :alphabetically, -> { order("LOWER(name)") }
 
@@ -47,5 +49,9 @@ class User < ApplicationRecord
   private
     def deactived_email_address
       email_address.sub(/@/, "-deactivated-#{SecureRandom.uuid}@")
+    end
+
+    def grant_access_to_buckets
+      Access.insert_all account.buckets.all_access.pluck(:id).collect { |bucket_id| { bucket_id: bucket_id, user_id: id } }
     end
 end

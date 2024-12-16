@@ -5,10 +5,10 @@
         toggle_class_toggle_class: "boosting",
         action: "animationend->toggle-class#toggle" },
       hidden: !bubble.boosts_count.positive? do %>
-  <%= button_to bucket_bubble_boosts_path(bubble.bucket, bubble),
-      class: "btn btn--plain",
-      data: { action: "toggle-class#toggle" },
-      form_class: "full-width" do %>
-    <%= tag.span("+ #{bubble.boosts_count}") if bubble.boosts_count.positive? %>
+  <%= form_with url: bucket_bubble_boosts_path(bubble.bucket, bubble),
+        class: "boost__form",
+        data: { action: "toggle-class#toggle" } do %>
+    <%= text_field_tag :boost_count, bubble.boosts_count, min: 1, class: "input borderless boost__input", autocomplete: "off" %>
+    <%= tag.button "+", class: "btn btn--plain boost__btn", type: :submit %>
   <% end %>
 <% end %>

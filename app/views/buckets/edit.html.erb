@@ -17,7 +17,7 @@
 <% end %>
 
 <div class="panel shadow center" style="--panel-size: 55ch;">
-  <%= form_with model: @bucket, class: "flex flex-column gap txt-large", controller: "form" do |form| %>
+  <%= form_with model: @bucket, class: "flex flex-column gap txt-large", data: { controller: "form" } do |form| %>
     <div class="flex align-center gap">
       <%= translation_button(:bucket_name) %>
 
@@ -29,7 +29,7 @@
     </div>
 
     <section class="margin-block pad-inline fill-shade border-radius">
-      <menu class="flex flex-column gap margin-none pad txt-medium" data-controller="filter" data-filter-active-class="filter--active" data-filter-selected-class="selected">
+      <%= access_menu_tag @bucket do %>
         <li class="flex align-center gap margin-none">
           <figure class="avatar flex-item-no-shrink" style="--avatar-border-radius: 0; --avatar-size: 4ch;">
             <%= image_tag "everyone.svg", aria: { hidden: "true" }, class: "colorize--black" %>
@@ -42,13 +42,11 @@
 
           <hr class="separator--horizontal flex-item-grow" style="--border-color: var(--color-subtle-dark); --border-style: dashed" aria-hidden="true" />
 
-          <%= link_to nil, class: "btn--faux flex-inline", tabindex: "-1" do %>
-            <label class="switch">
-              <input type="checkbox" lass="switch__input">
-              <span class="switch__btn round"></span>
-              <span class="for-screen-reader">Give everyone access to this project</span>
-            </label>
-          <% end %>
+          <label for="bucket_all_access" class="switch">
+            <%= form.check_box :all_access, class: "switch__input", checked: @bucket.all_access?, data: { action: "change->toggle-class#toggle" } %>
+            <span class="switch__btn round"></span>
+            <span class="for-screen-reader">Give everyone access to this project</span>
+          </label>
         </li>
 
         <hr class="separator--horizontal full-width" style="--border-color: var(--color-subtle-dark);" aria-hidden="true" />
@@ -58,15 +56,15 @@
         <% end %>
 
         <div data-filter-target="list">
-          <%= render partial: "buckets/user_toggle", collection: @selected_users, as: :user, locals: { selected: true } %>
+          <%= access_toggles_for @selected_users, selected: true %>
 
           <% if @selected_users.any? && @unselected_users.any? %>
             <hr class="separator full-width" style="--border-style: solid">
           <% end %>
 
-          <%= render partial: "buckets/user_toggle", collection: @unselected_users, as: :user, locals: { selected: false } %>
+          <%= access_toggles_for @unselected_users, selected: false %>
         </div>
-      </menu>
+      <% end %>
     </section>
 
     <button type="submit" id="log_in" class="btn btn--reversed center">

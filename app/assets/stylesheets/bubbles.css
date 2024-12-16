@@ -78,6 +78,7 @@
     --rotation: 45deg;
 
     aspect-ratio: 6/9;
+    border-radius: var(--bubble-shape);
     display: flex;
     font-size: 6cqi;
     inset: 70cqi 7cqi auto auto;
@@ -86,22 +87,27 @@
     place-items: center;
     transform: rotate(var(--rotation));
 
-    span {
+
+    .boost__form {
       transform: rotate(calc(var(--rotation) * -1));
     }
 
-    form {
-      block-size: 100%;
-      display: grid;
-      inline-size: 100%;
+    .boost__btn {
+      --btn-background: var(--bubble-color);
+      --btn-border-radius: 50%;
+      --btn-color: var(--color-ink-reversed);
+      --btn-size: 0.5em;
+      --btn-padding: 0.3em 0.5em;
+
+      font-weight: 800;
     }
 
-    .btn {
-      --btn-background: transparent;
-      --btn-color: var(--bubble-color);
-
-      appearance: none;
+    .boost__input {
+      color: var(--bubble-color);
+      field-sizing: content;
       font-weight: 800;
+      padding: 0;
+      text-align: center;
     }
 
     &.boosting {
@@ -210,15 +216,6 @@
     transition: transform 200ms ease-out;
     white-space: nowrap;
     z-index: 1;
-
-    &:has(.input:not([type="file"], [type="date"], select)) {
-      border-radius: 2em;
-      padding: 0.2em 0.5em;
-
-      .input {
-        color: var(--bubble-color);
-      }
-    }
   }
 
   @media (hover: hover) {

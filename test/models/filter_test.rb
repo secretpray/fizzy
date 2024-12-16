@@ -41,6 +41,13 @@ class FilterTest < ActiveSupport::TestCase
     assert_equal [ bubbles(:shipping) ], filter.bubbles
   end
 
+  test "can't see bubbles in buckets that aren't accessible" do
+    buckets(:writebook).update! all_access: false
+    buckets(:writebook).accesses.revoke_from users(:david)
+
+    assert_empty users(:david).filters.new(bucket_ids: [ buckets(:writebook).id ]).bubbles
+  end
+
   test "turning into params" do
     expected = { indexed_by: "most_discussed", tag_ids: [ tags(:mobile).id ], assignee_ids: [ users(:jz).id ], filter_id: filters(:jz_assignments).id }
     assert_equal expected.stringify_keys, filters(:jz_assignments).to_params.to_h
@@ -89,6 +96,15 @@ class FilterTest < ActiveSupport::TestCase
 
     assert_changes "Filter.exists?(filter.id)" do
       buckets(:writebook).destroy!
+    end
+  end
+
+  test "duplicate filters are removed after a resource is destroyed" do
+    users(:david).filters.create! tag_ids: [ tags(:mobile).id ], bucket_ids: [ buckets(:writebook).id ]
+    users(:david).filters.create! tag_ids: [ tags(:mobile).id, tags(:web).id ], bucket_ids: [ buckets(:writebook).id ]
+
+    assert_difference "Filter.count", -1 do
+      tags(:web).destroy!
     end
   end
 

@@ -5,6 +5,6 @@
     data-created-by-current-user-mine-class="comment--mine">
   <%# Template Dependency: comments/comment %>
   <%# Template Dependency: event_summaries/event_summary %>
-  <%= render bubble.messages, cache: true %>
+  <%= render bubble.messages, cached: true %>
   <%= render "comments/new", bubble: bubble %>
 </section>

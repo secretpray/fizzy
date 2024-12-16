@@ -12,6 +12,16 @@ class UserTest < ActiveSupport::TestCase
     assert_equal user, User.authenticate_by(email_address: "victor@hey.com", password: "secret123456")
   end
 
+  test "creation gives access to all_access buckets" do
+    user = User.create! \
+      account: accounts("37s"),
+      name: "Victor Cooper",
+      email_address: "victor@hey.com",
+      password: "secret123456"
+
+    assert_equal [ buckets(:writebook) ], user.buckets
+  end
+
   test "deactivate" do
     assert_changes -> { users(:jz).active? }, from: true, to: false do
       users(:jz).deactivate

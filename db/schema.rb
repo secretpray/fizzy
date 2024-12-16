@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_11_26_232658) do
+ActiveRecord::Schema[8.1].define(version: 2024_12_09_223551) do
   create_table "accesses", force: :cascade do |t|
     t.integer "bucket_id", null: false
     t.integer "user_id", null: false
@@ -116,6 +116,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_11_26_232658) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "all_access", default: false, null: false
     t.index ["account_id"], name: "index_buckets_on_account_id"
     t.index ["creator_id"], name: "index_buckets_on_creator_id"
   end

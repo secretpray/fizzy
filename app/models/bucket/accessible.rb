@@ -15,12 +15,20 @@ module Bucket::Accessible
       end
 
       def revoke_from(users)
-        destroy_by user: users
+        destroy_by user: users unless proxy_association.owner.all_access?
       end
     end
 
     has_many :users, through: :accesses
 
+    scope :all_access, -> { where(all_access: true) }
+
     after_create -> { accesses.grant_to creator }
+    after_save_commit :grant_access_to_everyone
   end
+
+  private
+    def grant_access_to_everyone
+      accesses.grant_to(account.users) if all_access_previously_changed?(to: true)
+    end
 end

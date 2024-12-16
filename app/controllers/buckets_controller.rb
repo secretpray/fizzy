@@ -38,7 +38,7 @@ class BucketsController < ApplicationController
     end
 
     def bucket_params
-      params.expect(bucket: [ :name ])
+      params.expect(bucket: [ :name, :all_access ]).with_defaults(all_access: false)
     end
 
     def grantees
