@@ -1,7 +1,5 @@
 <% @page_title = @bubble.title %>
 
-<% @filter ||= Current.user.filters.first || Filter.persist!({}) %>
-
 <% content_for :header do %>
   <nav>
     <%= link_to "#", class: "btn flex-item-justify-start", data: { controller: "back-navigation", back_navigation_fallback_destination_value: bubbles_path(bucket_id: @bubble.bucket) } do %>
