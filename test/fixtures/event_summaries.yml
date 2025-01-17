@@ -1,6 +1,6 @@
 logo_initial_activity:
   created_at: <%= 1.week.ago %>
-  body: "Added by David <time datetime='<%= 1.week.ago.iso8601 %>' data-local-time-target='ago' data-delimiter='.'></time> Assigned to JZ <time datetime='<%= 1.week.ago.iso8601 %>' data-local-time-target='ago' data-delimiter='.'>1 week ago.</time> David +1."
+  body: "Added by David <time datetime='<%= 1.week.ago.iso8601 %>' data-local-time-target='ago' data-delimiter='.'></time> Assigned to JZ <time datetime='<%= 1.week.ago.iso8601 %>' data-local-time-target='ago' data-delimiter='.'></time> David +1."
 
 logo_second_activity:
   created_at: <%= 1.day.ago %>
