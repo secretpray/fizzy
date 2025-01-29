@@ -60,3 +60,7 @@
   padding-block: var(--grid-lines);
   z-index: 1;
 }
+
+.event--related {
+  box-shadow: 0 0 0.3em 0.3em var(--bubble-color) !important;
+}

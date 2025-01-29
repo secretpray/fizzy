@@ -3,7 +3,7 @@
 <%= link_to bucket_bubble_path(bubble.bucket, bubble),
       class: "event panel shadow center center-block flex-inline align-center justify-start gap position-relative",
       style: "--bubble-color: #{ bubble.color }; #{ bubble_rotation(bubble) }",
-      data: { controller: "animation", animation_play_class: "bubble--wobble", animation_play_on_load_value: "true", action: "mouseover->animation#play" } do %>
+      data: { controller: "animation", related_element_target: "bubble_id_#{bubble.id}", animation_play_class: "bubble--wobble", animation_play_on_load_value: "true", action: "mouseover->animation#play" } do %>
   <div class="bubble__shape flex-item-no-shrink txt-large"></div>
   <div class="flex flex-column min-width txt-small txt-tight-lines align-start txt-align-start">
     <strong><%= bubble.title %></strong>

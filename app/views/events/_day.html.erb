@@ -1,4 +1,6 @@
-<div class="events--day">
+<div class="events--day" data-controller="related-element" 
+     data-related-element-highlight-class="event--related"
+     data-action="mouseover->related-element#highlight mouseout->related-element#unhighlight">
   <% if events.any? %>
     <h2 class="txt-x-large margin-block-end"><%= event_day_title(activity_day) %></h2>
 
