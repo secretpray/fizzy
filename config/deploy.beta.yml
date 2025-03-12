@@ -7,4 +7,8 @@ servers:
       - fizzy.37signals.works
 
 proxy:
-  host: fizzy.37signals.works
+  hosts:
+    - fizzy.37signals.works # will return a 404 for now
+    - 37s.fizzy.37signals.works
+    - dev.fizzy.37signals.works
+    - qa.fizzy.37signals.works
