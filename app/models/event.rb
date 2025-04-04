@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   scope :boosts, -> { where action: :boosted }
   scope :comments, -> { where action: :commented }
 
-  after_create -> { bubble.update_auto_pop_at(created_at) }
+  after_create -> { bubble.touch_last_active_at }
 
   def boosted?
     action == "boosted"

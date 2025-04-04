@@ -3,6 +3,11 @@ module Bubble::Eventable
 
   included do
     has_many :events, dependent: :destroy
+    before_create { self.last_active_at = Time.current }
+  end
+
+  def touch_last_active_at
+    touch :last_active_at
   end
 
   private

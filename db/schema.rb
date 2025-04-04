@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_04_03_094604) do
+ActiveRecord::Schema[8.1].define(version: 2025_04_04_074315) do
   create_table "accesses", force: :cascade do |t|
     t.integer "bucket_id", null: false
     t.datetime "created_at", null: false
@@ -106,7 +106,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_04_03_094604) do
     t.float "activity_score", default: 0.0, null: false
     t.datetime "activity_score_at"
     t.float "activity_score_order", default: 0.0, null: false
-    t.datetime "auto_pop_at", null: false
     t.integer "boosts_count", default: 0, null: false
     t.integer "bucket_id", null: false
     t.string "color"
@@ -114,13 +113,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_04_03_094604) do
     t.datetime "created_at", null: false
     t.integer "creator_id", null: false
     t.date "due_on"
+    t.datetime "last_active_at", null: false
     t.integer "stage_id"
     t.text "status", default: "creating", null: false
     t.string "title"
     t.datetime "updated_at", null: false
     t.index ["activity_score_order"], name: "index_bubbles_on_activity_score_order", order: :desc
-    t.index ["auto_pop_at"], name: "index_bubbles_on_auto_pop_at"
     t.index ["bucket_id"], name: "index_bubbles_on_bucket_id"
+    t.index ["last_active_at", "status"], name: "index_bubbles_on_last_active_at_and_status"
     t.index ["stage_id"], name: "index_bubbles_on_stage_id"
   end
 

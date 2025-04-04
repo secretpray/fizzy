@@ -9,7 +9,7 @@ logo:
   comments_count: 2
   activity_score: 7
   status: published
-  auto_pop_at: <%= 1.week.from_now %>
+  last_active_at: <%= Time.current %>
 
 layout:
   bucket: writebook
@@ -20,7 +20,7 @@ layout:
   comments_count: 1
   activity_score: 1
   status: published
-  auto_pop_at: <%= 1.week.from_now %>
+  last_active_at: <%= Time.current %>
 
 text:
   bucket: writebook
@@ -29,7 +29,7 @@ text:
   color: "#3B4B59"
   created_at: <%= 1.week.ago %>
   status: published
-  auto_pop_at: <%= 1.week.from_now %>
+  last_active_at: <%= Time.current %>
 
 shipping:
   bucket: writebook
@@ -38,4 +38,4 @@ shipping:
   color: "#ED8008"
   created_at: <%= 1.week.ago %>
   status: published
-  auto_pop_at: <%= 1.week.from_now %>
+  last_active_at: <%= Time.current %>

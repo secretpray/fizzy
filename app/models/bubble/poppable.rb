@@ -9,19 +9,19 @@ module Bubble::Poppable
     scope :popped, -> { joins(:pop) }
     scope :active, -> { where.missing(:pop) }
 
-    before_create -> { self.auto_pop_at = AUTO_POP_AFTER.from_now }
+    scope :due_to_be_popped, -> { considering.where(last_active_at: ..AUTO_POP_AFTER.ago) }
   end
 
   class_methods do
     def auto_pop_all_due
-      active.where(auto_pop_at: ..Time.current).find_each do |bubble|
+      due_to_be_popped.find_each do |bubble|
         bubble.pop!(user: bubble.bucket.account.users.system)
       end
     end
   end
 
-  def update_auto_pop_at(last_activity)
-    update!(auto_pop_at: last_activity + AUTO_POP_AFTER)
+  def auto_pop_at
+    last_active_at + AUTO_POP_AFTER if last_active_at
   end
 
   def popped?
