@@ -14,6 +14,10 @@
         </h1>
       </div>
 
+      <%= link_to bucket_bubble_path(bubble.bucket, bubble), class: "card__link" do %>
+        <span class="for-screen-reader"><%= bubble_title(bubble) %></span>
+      <% end %>
+
       <%= render "bubbles/stagings/stages", bubble: bubble if bubble.doing? %>
     </div>
 
