@@ -192,14 +192,82 @@
       animation: zoom-fade 300ms ease-out;
     }
   }
+}
 
-  .btn--dialog {
-    .icon--caret-down {
-      font-size: 1ch;
-    }
+.btn--dialog {
+  .icon--caret-down {
+    font-size: 1ch;
+  }
 
-    + .popup {
-      margin-top: var(--btn-size);
-    }
+  + .popup {
+    margin-top: var(--btn-size);
   }
 }
+
+/* NEW THING
+/* -------------------------------------------------------------------------- */
+
+.expandable-btn {
+  --btn-height: calc(1em + 1lh);
+
+  background: gold;
+  position: relative;
+
+  &[open] {
+    z-index: 1;
+  }
+
+  &::details-content {
+    inline-size: 0;
+    transition: inline-size 1s, content-visibility 1s;
+    transition-behavior: allow-discrete;
+  }
+
+  &:open::details-content {
+    inline-size: auto;
+  }
+}
+
+.expandable-btn__trigger {
+  .icon--caret-down {
+    font-size: 1ch;
+  }
+
+  [open] & {
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.expandable-btn__content {
+  --btn-border-radius: calc(var(--btn-height) / 2);
+
+  align-items: stretch;
+  flex-direction: column;
+  gap: 4px;
+  inset: 0 auto auto 0;
+  padding-block-start: var(--btn-height);
+  position: absolute;
+  text-wrap: nowrap;
+  transition: inline-size: 2s;
+
+  .expandable-btn:has(:hover) & {
+    box-shadow: 0 0 0 var(--hover-size) var(--hover-color);
+  }
+}
+
+.expandable-btn__item {
+  --btn-background: var(--color-subtle-light);
+  --btn-border-radius: 0.3em;
+  --btn-border-size: 0;
+  --btn-font-weight: 500;
+  --btn-padding: var(--inline-space-half) var(--inline-space-half) var(--inline-space-half) var(--inline-space);
+  --hover-size: 0;
+  --outline-color: transparent;
+
+  justify-content: start;
+  margin-inline: -1ch;
+  padding-inline: 1ch;
+}
+

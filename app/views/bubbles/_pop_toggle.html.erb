@@ -6,6 +6,20 @@
     <% end %>
   <% else %>
     <div class="flex-inline center position-relative" data-controller="dialog" data-action="keydown.esc->dialog#close click@document->dialog#closeOnClickOutside">
+
+      <details class="expandable-btn" open>
+        <summary class="btn borderless expandable-btn__trigger">
+          Close As
+          <%= icon_tag "caret-down" %>
+        </summary>
+        <div class="btn borderless expandable-btn__content">
+          <button class="expandable-btn__item btn">Here's some really wide content</button>
+          <button class="expandable-btn__item btn">Done</button>
+          <button class="expandable-btn__item btn">Not now</button>
+        </div>
+      </details>
+
+
       <button class="btn btn--dialog borderless" data-action="click->dialog#open:stop">
         <span>Close as</span>
         <%= icon_tag "caret-down" %>
@@ -14,6 +28,7 @@
       <dialog class="popup panel flex-column align-start gap-half shadow" style="--row-gap: 0.2em;"
           aria-label="Close as…" aria-description="Close this card and select a reason.."
           data-dialog-target="dialog" data-action="turbo:before-cache@document->dialog#close">
+        <strong class="popup__title margin-block-start-half pad-inline-half">Close as…</strong>
         <% Current.account.pop_reasons.labels.each do |label| %>
           <%= button_to bubble_pop_path(bubble, reason: label), class: "btn popup__item full-width", form_class: "full-width" do %>
             <span class="overflow-ellipsis"><%= label %></span>

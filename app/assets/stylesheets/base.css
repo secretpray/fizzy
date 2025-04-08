@@ -21,6 +21,7 @@
     background: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    interpolate-size: allow-keywords;
     line-height: 1.375;
     overflow: unset;
     scroll-behavior: auto;
