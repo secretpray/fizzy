@@ -15,7 +15,7 @@
 
 <section class="panel center borderless unpad flex flex-column gap-half">
   <%= turbo_frame_tag "notifications_list" do %>
-    <% if @unread.any? %>
+    <% if @unread %>
       <div class="flex align-center justify-space-between margin-block-start margin-block-end-half">
         <h2 class="txt-medium txt-uppercase txt-alert">New for you</h2>
         <%= button_to notifications_mark_all_read_path, class: "btn txt-small" do %>
