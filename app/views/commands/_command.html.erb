@@ -1,5 +1,5 @@
 <li class="min-width full-width flex gap-half terminal__item justify-start">
-  <button class="btn btn--plain overflow-ellipsis terminal__command flex-item-grow justify-start"><%= command.title %></button>
+  <button class="btn btn--plain overflow-ellipsis terminal__command flex-item-grow justify-start" data-action="toggle-class#remove terminal#restoreCommand" data-line="<%= command.line %>"><%= command.title %></button>
 
   <% if command.undoable? %>
     <%= button_to "Undo", command_undo_path(command), class: "btn btn--plain terminal__button flex-item-justify-end", data: { turbo_confirm: "Are you sure you want to undo '#{command.title}'?", turbo_frame: "_top" } %>

@@ -555,6 +555,16 @@ columns:
   - *6
   - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
     auto_increment:
+    name: line
+    cast_type: *14
+    sql_type_metadata: *15
+    'null': true
+    default:
+    default_function:
+    collation:
+    comment:
+  - !ruby/object:ActiveRecord::ConnectionAdapters::SQLite3::Column
+    auto_increment:
     name: type
     cast_type: *7
     sql_type_metadata: *8
@@ -2051,4 +2061,4 @@ indexes:
     comment:
     valid: true
   workflows: []
-version: 20250505123008
+version: 20250507095113

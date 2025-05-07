@@ -20,6 +20,11 @@ export default class extends Controller {
     }
   }
 
+  restoreCommand(event) {
+    this.#reset(event.target.dataset.line)
+    this.focus()
+  }
+
   async #handleErrorResponse(response) {
     const status = response.status
     const message = await response.text()

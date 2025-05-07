@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_05_05_123008) do
+ActiveRecord::Schema[8.1].define(version: 2025_05_07_095113) do
   create_table "accesses", force: :cascade do |t|
     t.integer "collection_id", null: false
     t.datetime "created_at", null: false
@@ -162,6 +162,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_05_123008) do
   create_table "commands", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.json "data", default: {}
+    t.text "line"
     t.string "type"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
