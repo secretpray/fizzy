@@ -25,20 +25,20 @@
   }
 
   .card--golden.card--doing {
-    --border-color: var(--color-canvas) !important;
-    --lch-golden: var(--lch-yellow-light);
+    /* --lch-golden: var(--lch-yellow-medium); */
+    --lch-golden: 89.1% 0.178 95.7;
 
     background-color: var(--color-canvas);
     background-image: linear-gradient(60deg,
-      oklch(var(--lch-golden) / 0.35) 0%,
-      oklch(var(--lch-golden) / 0.15) 20%,
-      oklch(var(--lch-golden) / 0) 60%,
+      oklch(var(--lch-golden) / 0.5) 0%,
+      oklch(var(--lch-golden) / 0.15) 33%,
+      oklch(var(--lch-golden) / 0.05) 66%,
       oklch(var(--lch-golden) / 0.5) 100%
     );
     box-shadow:
-      0 0 0.5em 0.2em oklch(var(--lch-golden) / 0.35),
-      0 0 1em 0.4em oklch(var(--lch-golden) / 0.35) !important;
-    outline: 1px solid oklch(var(--lch-golden) / 0.35);
+      0 0 0 1px oklch(var(--lch-golden) / 75%),
+      0 0 0.5em 0.2em oklch(var(--lch-golden) / 25%),
+      0 0 1em 0.8em oklch(var(--lch-golden) / 25%) !important;
 
     @media (prefers-color-scheme: dark) {
       --lch-golden: var(--lch-blue-medium);
@@ -247,17 +247,18 @@
   .card__closed {
     align-items: center;
     aspect-ratio: 8/5;
-    border: var(--block-space-half) solid var(--card-color);
+    border: 0.75ch solid var(--card-color);
     border-radius: 0.2em;
     color: var(--card-color);
     display: flex;
     flex-direction: column;
+    font-weight: bold;
     inset: auto var(--block-space) var(--block-space-double) auto;
-    justify-content: space-between;
+    justify-content: center;
     max-inline-size: 25ch;
     min-inline-size: 18ch;
     mix-blend-mode: multiply;
-    padding: var(--block-space-half) calc(var(--inline-space) * 1.5);
+    padding: 1ch;
     position: absolute;
     transform: rotate(-10deg);
 
@@ -271,21 +272,22 @@
     }
   }
 
-  .card__closed-by {
-    border-block-end: 1px dashed currentcolor;
-  }
-
   .card__closed-title {
-    color: var(--color-ink-inverted);
     font-size: 1.5em;
     font-weight: 900;
     line-height: 1.2;
+    position: relative;
     text-align: center;
-    text-shadow:
-     -2px -2px 0 var(--card-color),
-      2px -2px 0 var(--card-color),
-     -2px 2px 0 var(--card-color),
-      2px 2px 0 var(--card-color);
+    text-transform: uppercase;
+  }
+
+  .card__closed-date {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+  }
+
+  .card__closed-by {
+    border-block-end: 1px dashed currentcolor;
   }
 
   .card__bubble {

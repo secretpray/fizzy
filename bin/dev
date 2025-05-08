@@ -4,5 +4,9 @@ echo "Access with david@37signals.com / secret123456 on http://37signals.fizzy.l
 echo "Access with david@37signals.com / secret123456 on http://honcho.fizzy.localhost:3006"
 echo "Access first run on http://first-run.fizzy.localhost:3006"
 
-export SOLID_QUEUE_IN_PUMA=1
+if [ -f tmp/solid-queue.txt ]; then
+  # see also config/environments/development.rb
+  export SOLID_QUEUE_IN_PUMA=1
+fi
+
 exec ./bin/rails server -p 3006

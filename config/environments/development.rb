@@ -75,8 +75,10 @@ Rails.application.configure do
   # Allow all hosts in development
   config.hosts = nil
 
-  config.active_job.queue_adapter = :solid_queue
-  config.solid_queue.connects_to = { database: { writing: :queue } }
+  if Rails.root.join("tmp/solid-queue.txt").exist?
+    config.active_job.queue_adapter = :solid_queue
+    config.solid_queue.connects_to = { database: { writing: :queue } }
+  end
 
   if Rails.root.join("tmp/structured-logging.txt").exist?
     config.structured_logging.logger = ActiveSupport::Logger.new("log/structured-development.log")
