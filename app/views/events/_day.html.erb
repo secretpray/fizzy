@@ -7,7 +7,21 @@
       </span>
     </h2>
 
-    <div class="center events">
+
+    <%= render "events/day_timeline_column", title: "Added", day_timeline: day_timeline %>
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="center events" hidden>
       <%= render_column_headers(day_timeline) %>
       <%= render_event_grid_cells %>
       <%= render "events/day_timeline", day_timeline: day_timeline  %>
