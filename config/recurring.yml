@@ -11,3 +11,6 @@ production:
   sqlite_backups:
     class: SQLiteBackupsJob
     schedule: every day at 05:00
+  delete_unused_tags:
+    class: DeleteUnusedTagsJob
+    schedule: every day at 04:00
