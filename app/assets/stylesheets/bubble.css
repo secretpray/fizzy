@@ -8,7 +8,7 @@
     block-size: var(--bubble-size, var(--bubble-size-default));
     color: var(--color-ink);
     container-type: inline-size;
-    font-size: 1.75rem;
+    font-size: 1.7rem;
     font-weight: bold;
     inline-size: var(--bubble-size, var(--bubble-size-default));
     padding: 0.5cqi;

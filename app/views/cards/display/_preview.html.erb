@@ -34,7 +34,7 @@
     <% end %>
 
     <% if card.reconsidering_soon? %>
-      <%= render "cards/display/preview/bubble", label: "Consider", days: card.days_until_close, class: "bubble--considering" %>
+      <%= render "cards/display/preview/bubble", label: "Falls Back", days: card.days_until_close, class: "bubble--considering" %>
     <% end %>
   <% end %>
 <% end %>
