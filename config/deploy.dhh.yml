@@ -1,13 +1,13 @@
 servers:
   web:
     hosts:
-      - cph-app-101
+      - cph-mf4-app-100
   jobs:
     hosts:
-      - cph-app-101
+      - cph-mf4-app-100
   web-replica:
     hosts:
-      - cph-app-102
+      - cph-mf4-app-201
     proxy: true
 
 env:
@@ -18,9 +18,9 @@ proxy:
   ssl: false
 
 registry:
-  username: bcbot
-  password:
-    - BASECAMP_REGISTRY_PASSWORD
+  server: cph-mf4-registry-200.tail32f559.ts.net
+  username: unauthenticated
+  password: unauthenticated
 
 x-beamer-accessory: &beamer-accessory
   image: basecamp/beamer
@@ -46,7 +46,7 @@ accessories:
       - web-replica
 
   load-balancer:
-    host: cph-lb-103
+    host: cph-mf4-lb-203
     image: basecamp/kamal-proxy:lb
     options:
       publish:
