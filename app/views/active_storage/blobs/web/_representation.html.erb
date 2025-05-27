@@ -10,8 +10,6 @@
   <audio controls="true" width="100%" preload="metadata">
     <source src="<%= rails_blob_url(blob) %>" type="<%= blob.content_type %>">
   </audio>
-<% elsif blob.content_type == "application/pdf" %>
-  <embed src="<%= rails_blob_url(blob) %>" width="1024" height="768" type="application/pdf">
 <% elsif blob.variable? %>
   <%= image_tag url_for(blob.variant(loader: { n: -1 }, resize_to_limit: size)) %>
 <% elsif blob.previewable? %>
