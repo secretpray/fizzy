@@ -70,6 +70,7 @@ class Ai::ListCardsTool < Ai::Tool
   def execute(**params)
     cards = Card
       .where(collection: user.collections)
+      .published
       .with_rich_text_description
       .includes(:stage, :creator, :assignees, :goldness, :collection)
 
