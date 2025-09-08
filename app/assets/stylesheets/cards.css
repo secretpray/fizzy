@@ -400,6 +400,13 @@
       text-transform: uppercase;
     }
 
+    .card__notification-mentioner {
+      background-color: var(--color-highlight);
+      border-radius: 0.7em 0.2em 0.7em 0.2em;
+      display: inline-flex;
+      padding: 0.1em 0.3em;
+    }
+
     .card__title {
       font-size: var(--text-small);
       font-weight: bold;
