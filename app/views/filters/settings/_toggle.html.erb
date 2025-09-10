@@ -3,11 +3,11 @@
 <% if user_filtering.expanded? %>
   <%= link_to cards_path(filter.as_params), class: "btn txt-x-small btn--reversed", aria: { selected: true } do %>
     <%= icon_tag "filter" %>
-    <span>Filter these cards</span>
+    <span class="for-screen-reader">Close filter options</span>
   <% end %>
 <% else %>
   <%= link_to cards_path(filter.as_params.merge(expand_all: true)), class: "btn txt-x-small" do %>
     <%= icon_tag "filter" %>
-    <span>Filter these cards</span>
+    <span class="for-screen-reader">Expand filter options</span>
   <% end %>
 <% end %>

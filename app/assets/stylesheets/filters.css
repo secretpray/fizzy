@@ -99,6 +99,10 @@
     }
   }
 
+  .filter__terms {
+    --input-background: var(--color-canvas);
+  }
+
   .quick-filter {
     &:not(.default-value):has(.checked) {
       .input--select {
