@@ -1,43 +1,41 @@
 <% draggable = local_assigns.fetch(:draggable, false) && card.published? %>
 
-<% cache card.cache_invalidation_parts.for_preview(draggable) do %>
-  <%= card_article_tag card, class: "card", draggable: draggable, data: { id: card.id, drag_and_drop_target: "item" } do %>
-    <div class="flex flex-column flex-item-grow max-inline-size">
-      <header class="card__header">
-        <%= render "cards/display/preview/collection", card: card %>
-        <%= render "cards/display/preview/tags", card: card %>
-        <%= render "cards/display/preview/steps", card: card %>
-        <%= icon_tag "attachment", class: "card__attachments-indicator translucent txt-x-small" if card.has_attachments? %>
+<%= card_article_tag card, class: "card", draggable: draggable, data: { id: card.id, drag_and_drop_target: "item" } do %>
+  <div class="flex flex-column flex-item-grow max-inline-size">
+    <header class="card__header">
+      <%= render "cards/display/preview/collection", card: card %>
+      <%= render "cards/display/preview/tags", card: card %>
+      <%= render "cards/display/preview/steps", card: card %>
+      <%= icon_tag "attachment", class: "card__attachments-indicator translucent txt-x-small" if card.has_attachments? %>
 
-        <% if card.staged? && card.doing? %>
+      <% if card.staged? && card.doing? %>
           <span class="btn justify-start workflow-stage workflow-stage--current txt-uppercase min-width max-width">
             <span class="overflow-ellipsis "><%= card.stage.name %></span>
           </span>
-        <% end %>
-      </header>
+      <% end %>
+    </header>
 
-      <div class="card__body justify-space-between">
-        <div class="card__content">
-          <h3 class="card__title overflow-line-clamp">
-            <%= card.title %>
-          </h3>
-        </div>
-
-        <%= render "cards/display/preview/stages", card: card if card.doing? %>
+    <div class="card__body justify-space-between">
+      <div class="card__content">
+        <h3 class="card__title overflow-line-clamp">
+          <%= card.title %>
+        </h3>
       </div>
+
+      <%= render "cards/display/preview/stages", card: card if card.doing? %>
     </div>
+  </div>
 
-    <footer class="card__footer">
-      <%= render "cards/display/preview/meta", card: card %>
-      <%= render "cards/display/common/background", card: card %>
-    </footer>
+  <footer class="card__footer">
+    <%= render "cards/display/preview/meta", card: card %>
+    <%= render "cards/display/common/background", card: card %>
+  </footer>
 
-    <%= link_to card_path(card), draggable: false, class: "card__link", title: card_title_tag(card), data: { action: "dialog#close", turbo_frame: "_top" } do %>
-      <span class="for-screen-reader"><%= card.title %></span>
-    <% end %>
+  <%= link_to card_path(card), draggable: false, class: "card__link", title: card_title_tag(card), data: { action: "dialog#close", turbo_frame: "_top" } do %>
+    <span class="for-screen-reader"><%= card.title %></span>
+  <% end %>
 
-    <% if card.entropic? %>
-      <%= render "cards/display/preview/bubble", card: card %>
-    <% end %>
+  <% if card.entropic? %>
+    <%= render "cards/display/preview/bubble", card: card %>
   <% end %>
 <% end %>

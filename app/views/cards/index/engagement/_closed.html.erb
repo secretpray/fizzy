@@ -2,7 +2,7 @@
   <h2 class="cards__heading"><span class="cards__filter btn non-clickable borderless">Recently closed</span></h2>
 
   <% if column.page.used? %>
-    <%= render partial: "cards/display/preview", collection: column.cards, as: :card, cached: true %>
+    <%= render partial: "cards/display/preview", collection: column.cards, as: :card, cached: ->(card) { card.cache_invalidation_parts.for_preview } %>
 
     <% unless column.page.last? %>
       <div class="full-width">

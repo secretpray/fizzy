@@ -7,7 +7,7 @@
   <h2 class="cards__heading"><span class="cards__filter btn non-clickable borderless">On Deck</span></h2>
 
   <% if column.page.used? %>
-    <%= render partial: "cards/display/preview", collection: column.cards, as: :card, locals: { draggable: true }, cached: true %>
+    <%= render partial: "cards/display/preview", collection: column.cards, as: :card, locals: { draggable: true }, cached: ->(card) { card.cache_invalidation_parts.for_preview } %>
 
     <% unless column.page.last? %>
       <div class="full-width">
