@@ -27,7 +27,7 @@ gem "rqrcode"
 gem "redcarpet"
 gem "rouge"
 gem "jbuilder"
-gem "lexxy"
+gem "lexxy", bc: "lexxy"
 gem "image_processing", "~> 1.14"
 gem "platform_agent"
 gem "aws-sdk-s3", require: false
@@ -63,3 +63,5 @@ group :test do
   gem "vcr"
   gem "mocha"
 end
+
+gem "oauth2", "~> 2.0"

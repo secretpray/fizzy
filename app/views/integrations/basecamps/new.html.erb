@@ -1,0 +1,8 @@
+<% @hide_footer_frames = true %>
+
+<div data-controller="popup-window">
+  <p>We will redirect you to Basecamp to login.</p>
+
+  <%= button_to "Link your Basecamp Account", basecamp_integration_path, method: :post, data: { turbo: false }, class: "btn" %>
+  <button class="btn" data-action="popup-window#close">Not now</button>
+</div>

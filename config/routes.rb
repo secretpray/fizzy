@@ -186,6 +186,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :unfurl_link, only: :create
+
   namespace :public do
     resources :boards do
       scope module: :boards do
@@ -199,6 +201,14 @@ Rails.application.routes.draw do
       end
 
       resources :cards, only: :show
+    end
+  end
+
+  scope :integrations, module: :integrations do
+    resource :basecamp, only: %i[ new create destroy ], as: :basecamp_integration do
+      scope module: :basecamps do
+        resource :callback, only: :show
+      end
     end
   end
 

@@ -17,6 +17,11 @@ class User < ApplicationRecord
   has_many :pins, dependent: :destroy
   has_many :pinned_cards, through: :pins, source: :card
   has_many :exports, class_name: "Account::Export", dependent: :destroy
+  has_many :integrations, foreign_key: :owner_id, inverse_of: :owner, dependent: :destroy do
+    def with_basecamp
+      find_by(type: "Integration::Basecamp")
+    end
+  end
 
   scope :with_avatars, -> { preload(:account, :avatar_attachment) }
 
