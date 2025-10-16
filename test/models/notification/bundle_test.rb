@@ -114,4 +114,20 @@ class Notification::BundleTest < ActiveSupport::TestCase
     bundle.reload
     assert bundle.pending?
   end
+
+  test "deliver sends email with time in user's time zone" do
+    @user.settings.update!(timezone_name: "Madrid")
+
+    freeze_time Time.utc(2025, 1, 15, 14, 30, 0) do
+      @user.notifications.create!(source: events(:logo_published), creator: @user)
+      bundle = @user.notification_bundles.pending.last
+      bundle.deliver
+
+      email = ActionMailer::Base.deliveries.last
+      assert_not_nil email
+
+      # Time in Madrid should be 15:30 (UTC+1 in winter)
+      assert_match /everything since 3pm/i, email.text_part&.body&.to_s
+    end
+  end
 end

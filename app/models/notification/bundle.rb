@@ -36,11 +36,13 @@ class Notification::Bundle < ApplicationRecord
   end
 
   def deliver
-    processing!
+    user.in_time_zone do
+      processing!
 
-    Notification::BundleMailer.notification(self).deliver if deliverable?
+      Notification::BundleMailer.notification(self).deliver if deliverable?
 
-    delivered!
+      delivered!
+    end
   end
 
   def deliver_later
