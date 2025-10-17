@@ -18,8 +18,8 @@
           <%= hidden_field_tag "collection_ids[]", nil, data: { filter_settings_target: "field" } %>
         </template>
 
-        <%= filter_dialog "Collection…" do %>
-          <strong class="popup__title">Collection…</strong>
+        <%= filter_dialog "Board…" do %>
+          <strong class="popup__title">Board…</strong>
 
           <% if user_filtering.collections.many? %>
             <%= text_field_tag nil, nil, id: nil, placeholder: "Filter…", class: "input input--transparent txt-small font-weight-normal", autofocus: true,
