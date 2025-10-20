@@ -2,6 +2,6 @@
       data: {
             action: "click->dialog#open:stop keydown.j@document->hotkey#click keydown.meta+j@document->hotkey#click keydown.ctrl+j@document->hotkey#click",
             controller: "hotkey" } do %>
-  <%= image_tag "fizzy-logo.png" %>
+  <span><%= image_tag "fizzy-logo.png" %></span>
   <strong class="txt-medium overflow-ellipsis margin-none"><%= Current.user.identity.memberships.many? ? Account.sole.name : "Fizzy" %></strong>
 <% end %>

@@ -2,7 +2,7 @@
   .input:is(.fizzy-menu-trigger) {
     --input-background: var(--color-canvas);
     --input-border-color: transparent;
-    --input-padding: 0.3em 2em 0.3em 1em;
+    --input-padding: 0.3em 2em 0.3em 0.75em;
 
     inline-size: auto;
     margin-block-start: 0.1em;
@@ -15,23 +15,33 @@
       &:hover {
         filter: brightness(0.9);
 
+        span {
+          background: var(--color-ink-lighter);
+        }
+
         @media (prefers-color-scheme: dark) {
           --input-background: var(--color-ink-lighter);
         }
       }
     }
 
-    img {
+    span {
+      background: var(--color-ink-lightest);
       block-size: auto;
+      border-radius: 0.3125em;
+      box-shadow:
+        0 0 0 1px oklch(var(--lch-ink-darkest) / 0.1),
+        0 0.1em 0.2em -0.1em oklch(var(--lch-ink-darkest) / 0.05),
+        0 0.2em 0.4em -0.2em oklch(var(--lch-ink-darkest) / 0.05),
+        0 0.3em 0.6em -0.3em oklch(var(--lch-ink-darkest) / 0.05)
+      ;
+      display: grid;
+      height: 1.5em;
       inline-size: 1.5em;
       margin-inline-end: 0.8ch;
-    }
-
-    svg {
-      block-size: auto;
-      inline-size: 1.1em;
-      margin-block-end: 0.2em;
-      margin-inline-end: 0.8ch;
+      padding: 0.325em 0.275em 0.225em 0.275em;
+      place-content: center;
+      width: 1.5em;
     }
   }
 
