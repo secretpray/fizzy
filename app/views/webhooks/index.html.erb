@@ -27,8 +27,8 @@
       <%= render partial: "webhooks/webhook", collection: @page.records %>
     </ul>
   <% else %>
-    <p>Webhooks can notify another application when something happens in this Fizzy collection. You'll choose which events to subscribe to and provide a URL to receive the data.</p>
-    <p>For example, you could create a webhook that posts to a Campfire chat in Basecamp when new cards are added to Fizzy.</p>
+    <p>Webhooks can notify another application when something happens in this Boxcar board. You’ll choose which events to subscribe to and provide a URL to receive the data.</p>
+    <p>For example, you could create a webhook that posts to a Campfire chat in Basecamp when new cards are added to Boxcar.</p>
     <%= link_to new_collection_webhook_path, class: "btn btn--link" do %>
       <%= icon_tag "add" %>
       <span>Set up a webhook</span>
