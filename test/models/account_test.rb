@@ -36,8 +36,7 @@ class AccountTest < ActiveSupport::TestCase
     assert_equal ActiveRecord::FixtureSet.identify("account-create-with-admin-user-test"), account.external_account_id
     assert_equal "Account Create With Admin", account.name
 
-    skip("TODO:PLANB: need to be able to filter users by account")
-    admin = User.find_by(role: "admin")
+    admin = account.users.find_by(role: "admin")
     assert_equal "David", admin.name
     assert_equal "david@37signals.com", admin.identity.email_address
     assert_equal "admin", admin.role
