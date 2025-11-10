@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-if bundle exec beamer is-primary --directory ./storage; then
-  echo "Running on primary node, preparing the database..."
-  bin/rails db:prepare
-else
-  echo "This is not a primary node, skipping database preparation."
-fi
