@@ -30,8 +30,6 @@ module Authorization
         redirect_to session_menu_url(script_name: nil)
       elsif Current.membership.blank?
         redirect_to session_menu_url(script_name: nil)
-      elsif !Current.user&.active?
-        redirect_to unlink_membership_url(script_name: nil, membership_id: Current.membership.signed_id(purpose: :unlinking))
       end
     end
 

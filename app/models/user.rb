@@ -20,7 +20,10 @@ class User < ApplicationRecord
   delegate :staff?, to: :identity, allow_nil: true
 
   def deactivate
-    accesses.destroy_all
-    update! active: false
+    transaction do
+      accesses.destroy_all
+      membership.destroy!
+      update! active: false
+    end
   end
 end
