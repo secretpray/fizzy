@@ -118,7 +118,6 @@
       }
     }
 
-
     @media (any-hover: hover) {
       .card:has(.card__background img:not([src=""])):hover .card__background img:not([src=""]) {
         filter: blur(3px) brightness(1.2);
@@ -178,6 +177,10 @@
 
     .cards--grid & {
       display: contents;
+    }
+
+    .card[aria-selected] {
+      outline: 2px solid tomato;
     }
   }
 

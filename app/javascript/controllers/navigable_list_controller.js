@@ -8,7 +8,8 @@ export default class extends Controller {
     selectionAttribute: { type: String, default: "aria-selected" },
     focusOnSelection: { type: Boolean, default: true },
     actionableItems: { type: Boolean, default: false },
-    reverseNavigation: { type: Boolean, default: false }
+    reverseNavigation: { type: Boolean, default: false },
+    leftRightNavigation: { type: Boolean, default: true },
   }
 
   connect() {
@@ -136,10 +137,14 @@ export default class extends Controller {
       this.#handleArrowKey(event, selectMethod)
     },
     ArrowRight(event) {
-      this.#handleArrowKey(event, this.#selectNext.bind(this), false)
+      if (this.leftRightNavigationValue) {
+        this.#handleArrowKey(event, this.#selectNext.bind(this), false)
+      }
     },
     ArrowLeft(event) {
-      this.#handleArrowKey(event, this.#selectPrevious.bind(this), false)
+      if (this.leftRightNavigationValue) {
+        this.#handleArrowKey(event, this.#selectPrevious.bind(this), false)
+      }
     },
     Enter(event) {
       if (event.shiftKey) {

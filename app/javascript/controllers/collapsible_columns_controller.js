@@ -3,7 +3,7 @@ import { nextFrame, debounce } from "helpers/timing_helpers";
 
 export default class extends Controller {
   static classes = [ "collapsed", "noTransitions", "titleNotVisible" ]
-  static targets = [ "column", "button", "title" ]
+  static targets = [ "column", "button", "title", "focusElement" ]
   static values = {
     board: String
   }
@@ -15,6 +15,7 @@ export default class extends Controller {
   async connect() {
     await this.#restoreColumnsDisablingTransitions()
     this.#setupIntersectionObserver()
+    this.focusElement.target.focus()
   }
 
   disconnect() {
