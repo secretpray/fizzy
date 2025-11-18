@@ -6,8 +6,6 @@
   data-action="turbo:before-morph-attribute->collapsible-columns#preventToggle collapsible-columns:focus@document->navigable-list#selectFirst"
   data-drag-and-drop-url="<%= columns_card_drops_not_now_path("__id__") %>"
 >
-  <input type="hidden" data-collapsible-columns-target="focusElement" value="not now" />
-
   <div class="cards__transition-container">
     <header class="cards__header">
       <%= render "boards/show/expander", title: "Not Now", count: board.cards.postponed.count, column_id: "not-now" %>

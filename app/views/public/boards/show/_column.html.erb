@@ -4,8 +4,6 @@
   data-controller="clicker"
   data-action="turbo:before-morph-attribute->collapsible-columns#preventToggle"
 >
-  <input type="hidden" data-collapsible-columns-target="focusElement" />
-
   <div class="cards__transition-container">
     <header class="cards__header">
       <%= render "boards/show/expander", title: column.name, count: column.cards.active.count, column_id: dom_id(column) %>

@@ -8,8 +8,6 @@
   data-action="turbo:before-morph-attribute->collapsible-columns#preventToggle turbo:before-stream-render@document->collapsible-columns#restoreState"
   data-drag-and-drop-url="<%= columns_card_drops_column_path("__id__", column_id: column.id) %>"
 >
-  <input type="hidden" data-collapsible-columns-target="focusElement" />
-
   <div class="cards__transition-container">
     <header class="cards__header">
       <%= render "boards/show/menu/column", column: column %>

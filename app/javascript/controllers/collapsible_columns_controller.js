@@ -6,7 +6,7 @@ import { nextFrame, debounce } from "helpers/timing_helpers";
 
 export default class extends Controller {
   static classes = [ "collapsed", "noTransitions", "titleNotVisible" ]
-  static targets = [ "column", "button", "title", "focusElement", "maybe" ]
+  static targets = [ "column", "button", "title", "maybe" ]
   static values = {
     board: String
   }
@@ -184,10 +184,7 @@ export default class extends Controller {
   }
 
   #focus(column) {
-    const focusElement = column.querySelector('[data-collapsible-columns-target="focusElement"]')
-    focusElement.focus()
-
-    this.dispatch("focus", { detail: { column, index: this.currentColumnIndex } })
+    this.dispatch("focus", { detail: { column, column: column } })
   }
 
   get allColumns() {
