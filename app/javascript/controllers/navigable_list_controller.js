@@ -19,13 +19,8 @@ export default class extends Controller {
     this.element.addEventListener("navigable-list:activate", this._onActivate)
     this.element.addEventListener("navigable-list:deactivate", this._onDeactivate)
 
-    // If the list is not inside a collapsible column, make it active by default
-    const insideColumn = !!this.element.closest('[data-collapsible-columns-target="column"]')
-    this.active = !insideColumn
-
-    if (this.active) {
-      this.reset()
-    }
+    this.active = true
+    this.reset()
   }
 
   disconnect() {
@@ -36,6 +31,7 @@ export default class extends Controller {
   // Actions
 
   activate() {
+    console.log("active?", this.active)
     if (this.active) return
     this.active = true
 

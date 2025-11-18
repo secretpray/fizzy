@@ -14,11 +14,11 @@ export default class extends Controller {
     this.restoreState = debounce(this.restoreState.bind(this), 10)
     // TODO: The default focused column is Maybe (index 1), but the most recently expanded column should save to localStorage
     this.currentColumnIndex = 1
-    this.#focus(this.allColumns[this.currentColumnIndex])
   }
-
+  
   async connect() {
     await this.#restoreColumnsDisablingTransitions()
+    this.#focus(this.allColumns[this.currentColumnIndex])
     this.#setupIntersectionObserver()
   }
 
@@ -184,13 +184,11 @@ export default class extends Controller {
   }
 
   #focus(column) {
-    const navigableLists = Array.from(document.querySelectorAll('.card-columns [data-controller~="navigable-list"]'))
-
-    navigableLists.forEach(list => {
-      if (column.contains(list)) {
-        list.dispatchEvent(new CustomEvent("navigable-list:activate", { bubbles: false }))
+    this.allColumns.forEach(col => {
+      if (col === column) {
+        col.dispatchEvent(new CustomEvent("navigable-list:activate", { bubbles: false }))
       } else {
-        list.dispatchEvent(new CustomEvent("navigable-list:deactivate", { bubbles: false }))
+        col.dispatchEvent(new CustomEvent("navigable-list:deactivate", { bubbles: false }))
       }
     })
   }
