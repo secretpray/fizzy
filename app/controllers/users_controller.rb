@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :set_user
   before_action :ensure_permission_to_change_user, only: %i[ update destroy ]
 
-  def edit
+  def show
   end
 
-  def show
+  def edit
   end
 
   def update
