@@ -48,8 +48,6 @@ module ActiveSupport
     include Turbo::Broadcastable::TestHelper
 
     setup do
-      # TODO:PLANB: this is hacky, we should sort through the `Current` dependencies and figure out
-      #             how to set Current.user without needing both a session *and* an account
       Current.account = accounts("37s")
     end
 
