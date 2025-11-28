@@ -8,11 +8,23 @@ module Fizzy
       # moved from config/initializers/queenbee.rb
       Queenbee.host_app = Fizzy
 
+      initializer "fizzy_saas.settings", before: :load_config_initializers do |app|
+        if Rails.env.local?
+          if Rails.root.join("tmp/structured-logging.txt").exist?
+            app.config.structured_logging.logger = ActiveSupport::Logger.new("log/structured-development.log")
+          end
+        else
+          app.config.active_storage.service = :purestorage
+          app.config.structured_logging.logger = ActiveSupport::Logger.new(STDOUT)
+        end
+      end
+
       initializer "fizzy.saas.mount" do |app|
         app.routes.append do
           mount Fizzy::Saas::Engine => "/", as: "saas"
         end
       end
+
 
       initializer "fizzy_saas.transaction_pinning" do |app|
         app.config.middleware.insert_after(ActiveRecord::Middleware::DatabaseSelector, TransactionPinning::Middleware)
@@ -51,17 +63,6 @@ module Fizzy
         SolidQueue.on_start do
           Process.warmup
           Yabeda::Prometheus::Exporter.start_metrics_server!
-        end
-      end
-
-      initializer "fizzy_saas.production_config", before: :load_config_initializers do |app|
-        if Rails.env.local?
-          if Rails.root.join("tmp/structured-logging.txt").exist?
-            app.config.structured_logging.logger = ActiveSupport::Logger.new("log/structured-development.log")
-          end
-        else
-          app.config.active_storage.service = :purestorage
-          app.config.structured_logging.logger = ActiveSupport::Logger.new(STDOUT)
         end
       end
 
