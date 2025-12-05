@@ -9,7 +9,7 @@ module StorageTracking
   end
 
   def bytes_used
-    rich_text_associations.sum { |association| send(association.name).bytes_used }
+    rich_text_associations.sum { |association| send(association.name)&.bytes_used || 0 }
   end
 
   private

@@ -2,6 +2,7 @@ require "test_helper"
 
 class Account::StorageTrackingTest < ActiveSupport::TestCase
   setup do
+    Current.session = sessions(:david)
     @account = Current.account
     @account.update!(bytes_used: 0)
   end
@@ -22,5 +23,17 @@ class Account::StorageTrackingTest < ActiveSupport::TestCase
     assert_no_enqueued_jobs only: Account::AdjustStorageJob do
       @account.adjust_storage_later(0)
     end
+  end
+
+  test "recalculate bytes used from cards and comments" do
+    board = @account.boards.first
+    card = board.cards.create!(title: "Test", description: attachment_html(active_storage_blobs(:hello_txt)), status: :published)
+    card.comments.create!(body: attachment_html(active_storage_blobs(:hello_txt)))
+    card.comments.create!(body: attachment_html(active_storage_blobs(:list_pdf)))
+
+    @account.recalculate_bytes_used
+
+    expected_bytes = active_storage_blobs(:hello_txt).byte_size * 2 + active_storage_blobs(:list_pdf).byte_size
+    assert_equal expected_bytes, @account.bytes_used
   end
 end

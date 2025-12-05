@@ -123,9 +123,4 @@ class StorageTrackingTest < ActiveSupport::TestCase
       end
     end
   end
-
-  private
-    def attachment_html(blob)
-      ActionText::Attachment.from_attachable(blob).to_html
-    end
 end
