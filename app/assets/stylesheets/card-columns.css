@@ -1,17 +1,29 @@
 @layer components {
-  /* Column container
+  /* Layout adjustments for contained scrolling
   /* ------------------------------------------------------------------------ */
 
-  #global-container:has(.card-columns),
-  #main:has(.card-columns) {
-    display: grid;
-    grid-template-rows: auto 1fr;
+  body.contained-scrolling {
+    block-size: 100dvh;
+    grid-template-rows: 1fr var(--bar-height);
+
+    #global-container,
+    #main {
+      display: grid;
+      grid-template-rows: auto 1fr;
+    }
+
+    #global-container {
+      overflow: hidden;
+    }
+
+    #main {
+      overflow: auto;
+      padding: 0;
+    }
   }
 
-  #main:has(.card-columns) {
-    overflow: auto;
-    padding: 0;
-  }
+  /* Column container
+  /* ------------------------------------------------------------------------ */
 
   .card-columns {
     --bubble-size: 3.5rem;
@@ -97,6 +109,11 @@
     overflow: auto;
     position: relative;
 
+    &.drag-and-drop__hover-container {
+      --dnd-bg-color: transparent;
+      --dnd-border-color: transparent;
+    }
+
     @media (max-width: 639px) {
       scroll-snap-align: center;
     }
@@ -112,11 +129,6 @@
       }
     }
 
-    &.drag-and-drop__hover-container {
-      --dnd-bg-color: transparent;
-      --dnd-border-color: transparent;
-    }
-
     @media (any-hover: hover) {
       .card:has(.card__background img:not([src=""])):hover .card__background img:not([src=""]) {
         filter: blur(3px) brightness(1.2);
@@ -127,18 +139,16 @@
 
   .cards__transition-container {
     block-size: 100%;
-    border-radius: calc(var(--column-width-collapsed) / 2);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
     padding-inline: calc(var(--column-gap) / 2);
     translate: 0;
     transition: translate var(--column-transition-duration) var(--ease-out-overshoot-subtle);
 
-    @media (max-width: 639px) {
-      overflow: hidden;
-    }
-
     @media (min-width: 640px) {
+      border-radius: calc(var(--column-width-collapsed) / 2);
+
       .cards:not(.is-collapsed) & {
         padding-inline: var(--column-padding-expanded);
       }
@@ -177,7 +187,8 @@
     gap: var(--cards-gap);
     margin-block-start: -1ch;
     margin-inline: -1ch;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     padding: 1ch;
 
     @media (min-width: 640px) {
