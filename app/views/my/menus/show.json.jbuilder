@@ -1,4 +1,8 @@
-json.quick_actions []
+json.quick_actions do
+  json.child! { json.partial! "my/menus/home_action" }
+  json.child! { json.partial! "my/menus/assigned_to_me_action" }
+  json.child! { json.partial! "my/menus/added_by_me_action" }
+end
 
 json.sections do
   json.child! { json.partial! "my/menus/boards_section", boards: @boards }
