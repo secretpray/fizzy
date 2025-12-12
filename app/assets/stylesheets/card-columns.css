@@ -128,7 +128,7 @@
     translate: 0;
     transition: translate var(--column-transition-duration) var(--ease-out-overshoot-subtle);
 
-    .is-collapsed:not(.cards--considering) & {
+    .is-collapsed:not(.cards--maybe) & {
       translate: 0 var(--column-width-collapsed);
     }
 
@@ -354,7 +354,7 @@
       justify-content: center;
     }
 
-    .cards:is(.cards--considering) &:hover {
+    .cards:is(.cards--maybe) &:hover {
       cursor: unset;
       filter: none;
     }
@@ -382,7 +382,7 @@
       writing-mode: vertical-rl;
     }
 
-    .cards:not(.is-collapsed, .cards--considering) & {
+    .cards:not(.is-collapsed, .cards--maybe) & {
       align-items: center;
       display: flex;
       gap: 0.25ch;
@@ -523,11 +523,11 @@
     }
   }
 
-  /* Considering
+  /* Maybe
   /* ------------------------------------------------------------------------ */
 
-  .cards--considering {
-    --card-color: oklch(var(--lch-blue-medium));
+  .cards--maybe {
+    --card-color: var(--color-maybe);
 
     position: relative;
 
@@ -664,7 +664,7 @@
   /* -------------------------------------------------------------------------- */
 
   /* Surface a mini bubble if there are cards with bubbles inside */
-  .cards--considering:has(.bubble:not([hidden])) .cards__expander-title,
+  .cards--maybe:has(.bubble:not([hidden])) .cards__expander-title,
   .cards--doing.is-collapsed:has(.bubble:not([hidden])) .cards__transition-container {
     --bubble-color: var(--card-color, oklch(var(--lch-blue-medium)));
     --bubble-shape: 54% 46% 61% 39% / 57% 49% 51% 43%;
@@ -685,7 +685,7 @@
     }
 
     /* Maybe column: position bubble relative to the title, not the container */
-    .cards--considering & {
+    .cards--maybe & {
       overflow: visible;
       position: relative;
 

@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= link_to board_columns_stream_path(board), class: "cards cards--considering is-collapsed", data: { turbo_frame: "_top" } do %>
+  <%= link_to board_columns_stream_path(board), class: "cards cards--maybe is-collapsed", data: { turbo_frame: "_top" } do %>
     <div class="cards__expander btn btn--plain" style="--card-count: <%= board.cards.awaiting_triage.count %>">
       <span class="cards__expander-count"><%= board.cards.awaiting_triage.count %></span>
       <h2 class="cards__expander-title">
