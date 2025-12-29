@@ -11,6 +11,8 @@ class ActionMcp::BaseController < ActionController::Base
     internal_error: -32603
   }
 
+  skip_before_action :verify_authenticity_token
+
   def create
     result = dispatch_rpc_method
     render json: { jsonrpc: "2.0", result: result, id: params[:id] }
