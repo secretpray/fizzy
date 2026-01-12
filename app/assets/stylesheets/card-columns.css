@@ -255,6 +255,27 @@
         }
       }
     }
+
+    &:has(.card) {
+      .blank-slate {
+        display: none;
+      }
+    }
+
+    /* Use the default blank-slate on small viewports since drag-and-drop isn't available */
+    [data-controller~="drag-and-drop"] & {
+      @media (max-width: 639px) {
+        .blank-slate--drag {
+          display: none;
+        }
+      }
+
+      @media (min-width: 640px) {
+        .blank-slate--default {
+          display: none;
+        }
+      }
+    }
   }
 
   .cards__new-column {
@@ -314,6 +335,10 @@
       flex: 0 1 auto;
       inline-size: fit-content;
       margin: 0 0 0 auto;
+    }
+
+    .blank-slate--drag {
+      display: none;
     }
   }
 
@@ -731,7 +756,8 @@
   .cards--on-deck {
     --card-color: var(--color-ink-light) !important;
 
-    .card {
+    .card,
+    .blank-slate {
       --card-color: var(--color-card-complete) !important;
     }
 
